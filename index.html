@@ -63,8 +63,14 @@
             box-shadow: 0 5px 15px rgba(232, 62, 140, 0.3);
         }
 
+        /* Responsive Section Padding */
         .section-padding {
-            padding: 100px 0;
+            padding: 80px 0;
+        }
+        @media (min-width: 1200px) {
+            .section-padding {
+                padding: 120px 0; /* Padding lebih lega untuk layar desktop besar */
+            }
         }
 
         .section-title {
@@ -88,12 +94,20 @@
             border-radius: 2px;
         }
 
+        /* Container Max-Width untuk Desktop Sangat Lebar (Ultrawide) */
+        @media (min-width: 1600px) {
+            .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+                max-width: 1400px; /* Menjaga konten tetap fokus di tengah, tidak melar ke ujung layar */
+            }
+        }
+
         /* Navbar */
         .navbar {
             background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
             padding: 15px 0;
+            transition: all 0.3s ease;
         }
 
         .navbar-brand {
@@ -119,30 +133,50 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding-top: 80px;
+            padding-top: 100px;
+            padding-bottom: 50px;
         }
 
         .hero-title {
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             font-weight: 800;
             line-height: 1.2;
             margin-bottom: 20px;
+        }
+
+        /* Responsivitas Ukuran Font Hero di Desktop */
+        @media (min-width: 992px) {
+            .hero-title {
+                font-size: 3.2rem;
+            }
+        }
+        @media (min-width: 1400px) {
+            .hero-title {
+                font-size: 3.8rem; /* Lebih besar di monitor besar */
+            }
+        }
+
+        .hero-img-wrapper {
+            position: relative;
+            text-align: center;
         }
 
         .hero-img-wrapper img {
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(232, 62, 140, 0.15);
             width: 100%;
+            max-width: 520px; /* Mencegah gambar terlalu besar di monitor ultrawide */
             height: auto;
             transform: rotate(2deg);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .hero-img-wrapper img:hover {
-            transform: rotate(0deg);
+            transform: rotate(0deg) scale(1.02);
+            box-shadow: 0 25px 50px rgba(232, 62, 140, 0.25);
         }
 
-        /* Layanan Kami (About) */
+        /* Layanan Kami */
         .service-card {
             background: #fff;
             padding: 40px 30px;
@@ -166,12 +200,26 @@
             margin-bottom: 20px;
         }
 
-        /* Portofolio - Asymmetrical Grid */
+        /* Portofolio - Asymmetrical Grid Adaptif */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            grid-auto-rows: 250px;
+            grid-auto-rows: 240px;
             gap: 20px;
+        }
+
+        /* Optimasi Grid di Monitor Desktop Sangat Lebar */
+        @media (min-width: 1200px) {
+            .portfolio-grid {
+                grid-auto-rows: 280px;
+                gap: 24px;
+            }
+        }
+        @media (min-width: 1400px) {
+            .portfolio-grid {
+                grid-auto-rows: 320px;
+                gap: 30px;
+            }
         }
 
         .portfolio-item {
@@ -189,7 +237,7 @@
         }
 
         .portfolio-item:hover img {
-            transform: scale(1.1);
+            transform: scale(1.08);
         }
 
         .portfolio-overlay {
@@ -197,10 +245,10 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top, rgba(232,62,140,0.9), transparent);
-            padding: 20px;
+            background: linear-gradient(to top, rgba(232,62,140,0.95), transparent);
+            padding: 25px 20px;
             transform: translateY(100%);
-            transition: transform 0.3s ease;
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .portfolio-item:hover .portfolio-overlay {
@@ -221,13 +269,23 @@
         .item-5 { grid-column: span 2; grid-row: span 1; }
 
         @media (max-width: 991px) {
-            .hero-title { font-size: 2.5rem; }
             .portfolio-grid {
                 grid-template-columns: repeat(2, 1fr);
-                grid-auto-rows: 200px;
+                grid-auto-rows: 220px;
             }
             .item-1, .item-2, .item-3, .item-4, .item-5 {
                 grid-column: span 2;
+                grid-row: span 1;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                grid-auto-rows: 250px;
+            }
+            .item-1, .item-2, .item-3, .item-4, .item-5 {
+                grid-column: span 1;
                 grid-row: span 1;
             }
         }
@@ -240,7 +298,7 @@
         .contact-info-item {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         
         .contact-icon {
@@ -273,7 +331,7 @@
         footer {
             background-color: var(--text-dark);
             color: white;
-            padding: 40px 0 20px;
+            padding: 50px 0 30px;
         }
 
         .footer-social a {
@@ -443,7 +501,7 @@
     <!-- Kontak Kami -->
     <section id="kontak" class="section-padding">
         <div class="container">
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col-lg-5 mb-5 mb-lg-0">
                     <h2 class="fw-bold mb-4">Mari Bicara Tentang <span class="text-pink">Bungamu.</span></h2>
                     <p class="mb-5">Punya ide buket kustom atau butuh pengiriman cepat hari ini? Hubungi kami, tim Erica Flow di Medan siap membantu mewujudkannya!</p>
@@ -474,7 +532,7 @@
                 </div>
                 
                 <div class="col-lg-7">
-                    <div class="bg-white p-5 rounded-4 shadow-sm">
+                    <div class="bg-white p-4 p-md-5 rounded-4 shadow-sm">
                         <h4 class="mb-4">Kirim Pesan Langsung</h4>
                         <form onsubmit="event.preventDefault(); alert('Terima kasih! Pesan Anda telah terkirim ke tim Erica Flow.');">
                             <div class="row g-3">
